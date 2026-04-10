@@ -1,0 +1,201 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\camil\\source\\repos\\SIBDAT25-2S-Teknologi\\TeknologiProject\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BAA91DDB-5752-1F3B-201D-2C5BEFD348AA}|TeknologiProject\\TeknologiProject.csproj|c:\\users\\camil\\source\\repos\\sibdat25-2s-teknologi\\teknologiproject\\teknologiproject\\sortingmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAA91DDB-5752-1F3B-201D-2C5BEFD348AA}|TeknologiProject\\TeknologiProject.csproj|solutionrelative:teknologiproject\\sortingmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAA91DDB-5752-1F3B-201D-2C5BEFD348AA}|TeknologiProject\\TeknologiProject.csproj|c:\\users\\camil\\source\\repos\\sibdat25-2s-teknologi\\teknologiproject\\teknologiproject\\package.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAA91DDB-5752-1F3B-201D-2C5BEFD348AA}|TeknologiProject\\TeknologiProject.csproj|solutionrelative:teknologiproject\\package.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAA91DDB-5752-1F3B-201D-2C5BEFD348AA}|TeknologiProject\\TeknologiProject.csproj|c:\\users\\camil\\source\\repos\\sibdat25-2s-teknologi\\teknologiproject\\teknologiproject\\receiver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAA91DDB-5752-1F3B-201D-2C5BEFD348AA}|TeknologiProject\\TeknologiProject.csproj|solutionrelative:teknologiproject\\receiver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAA91DDB-5752-1F3B-201D-2C5BEFD348AA}|TeknologiProject\\TeknologiProject.csproj|c:\\users\\camil\\source\\repos\\sibdat25-2s-teknologi\\teknologiproject\\teknologiproject\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAA91DDB-5752-1F3B-201D-2C5BEFD348AA}|TeknologiProject\\TeknologiProject.csproj|solutionrelative:teknologiproject\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAA91DDB-5752-1F3B-201D-2C5BEFD348AA}|TeknologiProject\\TeknologiProject.csproj|c:\\users\\camil\\source\\repos\\sibdat25-2s-teknologi\\teknologiproject\\teknologiproject\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAA91DDB-5752-1F3B-201D-2C5BEFD348AA}|TeknologiProject\\TeknologiProject.csproj|solutionrelative:teknologiproject\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAA91DDB-5752-1F3B-201D-2C5BEFD348AA}|TeknologiProject\\TeknologiProject.csproj|c:\\users\\camil\\source\\repos\\sibdat25-2s-teknologi\\teknologiproject\\teknologiproject\\truck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAA91DDB-5752-1F3B-201D-2C5BEFD348AA}|TeknologiProject\\TeknologiProject.csproj|solutionrelative:teknologiproject\\truck.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAA91DDB-5752-1F3B-201D-2C5BEFD348AA}|TeknologiProject\\TeknologiProject.csproj|c:\\users\\camil\\source\\repos\\sibdat25-2s-teknologi\\teknologiproject\\teknologiproject\\sender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAA91DDB-5752-1F3B-201D-2C5BEFD348AA}|TeknologiProject\\TeknologiProject.csproj|solutionrelative:teknologiproject\\sender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAA91DDB-5752-1F3B-201D-2C5BEFD348AA}|TeknologiProject\\TeknologiProject.csproj|c:\\users\\camil\\source\\repos\\sibdat25-2s-teknologi\\teknologiproject\\teknologiproject\\region.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAA91DDB-5752-1F3B-201D-2C5BEFD348AA}|TeknologiProject\\TeknologiProject.csproj|solutionrelative:teknologiproject\\region.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAA91DDB-5752-1F3B-201D-2C5BEFD348AA}|TeknologiProject\\TeknologiProject.csproj|c:\\users\\camil\\source\\repos\\sibdat25-2s-teknologi\\teknologiproject\\teknologiproject\\postman.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BAA91DDB-5752-1F3B-201D-2C5BEFD348AA}|TeknologiProject\\TeknologiProject.csproj|solutionrelative:teknologiproject\\postman.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BAA91DDB-5752-1F3B-201D-2C5BEFD348AA}|TeknologiProject\\TeknologiProject.csproj|c:\\users\\camil\\source\\repos\\sibdat25-2s-teknologi\\teknologiproject\\teknologiproject\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{BAA91DDB-5752-1F3B-201D-2C5BEFD348AA}|TeknologiProject\\TeknologiProject.csproj|solutionrelative:teknologiproject\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 10,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{55f480fa-fbef-4386-8c1c-ea8d10c9f542}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Person.cs",
+              "DocumentMoniker": "C:\\Users\\camil\\source\\repos\\SIBDAT25-2S-Teknologi\\TeknologiProject\\TeknologiProject\\Person.cs",
+              "RelativeDocumentMoniker": "TeknologiProject\\Person.cs",
+              "ToolTip": "C:\\Users\\camil\\source\\repos\\SIBDAT25-2S-Teknologi\\TeknologiProject\\TeknologiProject\\Person.cs",
+              "RelativeToolTip": "TeknologiProject\\Person.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T08:13:44.708Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Region.cs",
+              "DocumentMoniker": "C:\\Users\\camil\\source\\repos\\SIBDAT25-2S-Teknologi\\TeknologiProject\\TeknologiProject\\Region.cs",
+              "RelativeDocumentMoniker": "TeknologiProject\\Region.cs",
+              "ToolTip": "C:\\Users\\camil\\source\\repos\\SIBDAT25-2S-Teknologi\\TeknologiProject\\TeknologiProject\\Region.cs",
+              "RelativeToolTip": "TeknologiProject\\Region.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T08:11:49.593Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Truck.cs",
+              "DocumentMoniker": "C:\\Users\\camil\\source\\repos\\SIBDAT25-2S-Teknologi\\TeknologiProject\\TeknologiProject\\Truck.cs",
+              "RelativeDocumentMoniker": "TeknologiProject\\Truck.cs",
+              "ToolTip": "C:\\Users\\camil\\source\\repos\\SIBDAT25-2S-Teknologi\\TeknologiProject\\TeknologiProject\\Truck.cs",
+              "RelativeToolTip": "TeknologiProject\\Truck.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T08:10:11.258Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Package.cs",
+              "DocumentMoniker": "C:\\Users\\camil\\source\\repos\\SIBDAT25-2S-Teknologi\\TeknologiProject\\TeknologiProject\\Package.cs",
+              "RelativeDocumentMoniker": "TeknologiProject\\Package.cs",
+              "ToolTip": "C:\\Users\\camil\\source\\repos\\SIBDAT25-2S-Teknologi\\TeknologiProject\\TeknologiProject\\Package.cs",
+              "RelativeToolTip": "TeknologiProject\\Package.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T08:08:41.326Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\camil\\source\\repos\\SIBDAT25-2S-Teknologi\\TeknologiProject\\TeknologiProject\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "TeknologiProject\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\camil\\source\\repos\\SIBDAT25-2S-Teknologi\\TeknologiProject\\TeknologiProject\\MainWindow.xaml.cs",
+              "RelativeToolTip": "TeknologiProject\\MainWindow.xaml.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAAwEYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T08:07:26.722Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Receiver.cs",
+              "DocumentMoniker": "C:\\Users\\camil\\source\\repos\\SIBDAT25-2S-Teknologi\\TeknologiProject\\TeknologiProject\\Receiver.cs",
+              "RelativeDocumentMoniker": "TeknologiProject\\Receiver.cs",
+              "ToolTip": "C:\\Users\\camil\\source\\repos\\SIBDAT25-2S-Teknologi\\TeknologiProject\\TeknologiProject\\Receiver.cs",
+              "RelativeToolTip": "TeknologiProject\\Receiver.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T08:14:04.335Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Sender.cs",
+              "DocumentMoniker": "C:\\Users\\camil\\source\\repos\\SIBDAT25-2S-Teknologi\\TeknologiProject\\TeknologiProject\\Sender.cs",
+              "RelativeDocumentMoniker": "TeknologiProject\\Sender.cs",
+              "ToolTip": "C:\\Users\\camil\\source\\repos\\SIBDAT25-2S-Teknologi\\TeknologiProject\\TeknologiProject\\Sender.cs",
+              "RelativeToolTip": "TeknologiProject\\Sender.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T08:14:21.94Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SortingManager.cs",
+              "DocumentMoniker": "C:\\Users\\camil\\source\\repos\\SIBDAT25-2S-Teknologi\\TeknologiProject\\TeknologiProject\\SortingManager.cs",
+              "RelativeDocumentMoniker": "TeknologiProject\\SortingManager.cs",
+              "ToolTip": "C:\\Users\\camil\\source\\repos\\SIBDAT25-2S-Teknologi\\TeknologiProject\\TeknologiProject\\SortingManager.cs",
+              "RelativeToolTip": "TeknologiProject\\SortingManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T08:11:32.361Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Postman.cs",
+              "DocumentMoniker": "C:\\Users\\camil\\source\\repos\\SIBDAT25-2S-Teknologi\\TeknologiProject\\TeknologiProject\\Postman.cs",
+              "RelativeDocumentMoniker": "TeknologiProject\\Postman.cs",
+              "ToolTip": "C:\\Users\\camil\\source\\repos\\SIBDAT25-2S-Teknologi\\TeknologiProject\\TeknologiProject\\Postman.cs",
+              "RelativeToolTip": "TeknologiProject\\Postman.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T08:10:40.881Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\camil\\source\\repos\\SIBDAT25-2S-Teknologi\\TeknologiProject\\TeknologiProject\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "TeknologiProject\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\camil\\source\\repos\\SIBDAT25-2S-Teknologi\\TeknologiProject\\TeknologiProject\\MainWindow.xaml",
+              "RelativeToolTip": "TeknologiProject\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-10T08:07:30.277Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
