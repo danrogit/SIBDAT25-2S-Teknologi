@@ -1,75 +1,140 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace TeknologiProject
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly SortingManager _sortingManager = new SortingManager();
+        private readonly List<Region> _regions = new List<Region>();
+        private readonly Dictionary<Region, Truck> _regionTruckMap = new Dictionary<Region, Truck>();
+        private readonly ObservableCollection<string> _logs = new ObservableCollection<string>();
+        private readonly ObservableCollection<string> _truckOverview = new ObservableCollection<string>();
+
         public MainWindow()
         {
             InitializeComponent();
+            InitializeUiData();
+        }
 
-            //Regioner i Danmark, som kan bruges til at kategorisere afsender og modtager
-            Region Midtjylland = new Region("Midtjylland");
-            Region Hovedstaden = new Region("Hovedstaden");
-            Region Nordjylland = new Region("Nordjylland");
-            Region Syddanmark = new Region("Syddanmark");
-            Region Sjaelland = new Region("Sjælland");
+        private void InitializeUiData()
+        {
+            var midtjylland = new Region("Midtjylland");
+            var hovedstaden = new Region("Hovedstaden");
+            var nordjylland = new Region("Nordjylland");
+            var syddanmark = new Region("Syddanmark");
+            var sjaelland = new Region("Sjælland");
 
-            List<Region> RegionList = new List<Region>();
-            RegionList.Add(Midtjylland);
-            RegionList.Add(Hovedstaden);
-            RegionList.Add(Nordjylland);
-            RegionList.Add(Syddanmark);
-            RegionList.Add(Sjaelland);
+            _regions.Add(midtjylland);
+            _regions.Add(hovedstaden);
+            _regions.Add(nordjylland);
+            _regions.Add(syddanmark);
+            _regions.Add(sjaelland);
 
-            //Oprettelse af en afsender
-            Sender sender = new Sender();
-            sender.Name = "Philip Nord Nielsen";
-            sender.City = "Aarhus";
-            sender.Postalcode = 8000;
-            sender.Region = Midtjylland;
+            SenderRegionComboBox.ItemsSource = _regions;
+            ReceiverRegionComboBox.ItemsSource = _regions;
+            SenderRegionComboBox.DisplayMemberPath = "Name";
+            ReceiverRegionComboBox.DisplayMemberPath = "Name";
 
-            //Oprettelse af en modtager
-            Receiver receiver = new Receiver();
-            receiver.Name = "Mads Mikkelsen";
-            receiver.City = "Copenhagen";
-            receiver.Postalcode = 1000;
-            receiver.Region = Hovedstaden;
+            PackageSizeComboBox.ItemsSource = Enum.GetValues(typeof(PackageSize));
 
-            Package package = new Package();
-            package.Sender = sender;
-            package.Receiver = receiver;
-            package.Size = PackageSize.Small;
+            _regionTruckMap.Add(midtjylland, new Truck());
+            _regionTruckMap.Add(hovedstaden, new Truck());
+            _regionTruckMap.Add(nordjylland, new Truck());
+            _regionTruckMap.Add(syddanmark, new Truck());
+            _regionTruckMap.Add(sjaelland, new Truck());
 
-            SortingManager sortingManager = new SortingManager();
+            LogListBox.ItemsSource = _logs;
+            TruckOverviewListBox.ItemsSource = _truckOverview;
 
-            Truck truckMidt = new Truck();
-            Truck truckHoved = new Truck();
-            Truck truckSyd = new Truck();
-            Truck truckNord = new Truck();
-            Truck truckSjael = new Truck();
+            _sortingManager.OnLog += message => Dispatcher.Invoke(() => _logs.Insert(0, message));
 
-            //Liste der indeholder lastbilerne, som peger på hvilken region lastbilen skal køre til
-            Dictionary<Region, Truck> regionTruckMap = new Dictionary<Region, Truck>();
-            regionTruckMap.Add(Midtjylland, truckMidt);
-            regionTruckMap.Add(Hovedstaden, truckHoved);
-            regionTruckMap.Add(Syddanmark, truckSyd);
-            regionTruckMap.Add(Nordjylland, truckNord);
-            regionTruckMap.Add(Sjaelland, truckSjael);
+            UpdateTruckOverview();
+        }
 
-            sortingManager.Sort(package, regionTruckMap);
+        private void SortPackageButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!ValidateInput(out var senderPostalCode, out var receiverPostalCode, out var senderRegion, out var receiverRegion, out var packageSize))
+                return;
+
+            var package = new Package
+            {
+                Sender = new Sender
+                {
+                    Name = SenderNameTextBox.Text,
+                    City = SenderCityTextBox.Text,
+                    Postalcode = senderPostalCode,
+                    Region = senderRegion
+                },
+                Receiver = new Receiver
+                {
+                    Name = ReceiverNameTextBox.Text,
+                    Address = ReceiverAddressTextBox.Text,
+                    City = ReceiverCityTextBox.Text,
+                    Postalcode = receiverPostalCode,
+                    Region = receiverRegion
+                },
+                Size = packageSize
+            };
+
+            _sortingManager.Sort(package, _regionTruckMap);
+            _logs.Insert(0, $"✓ Pakke sorteret til {receiverRegion.Name} ({packageSize})");
+            UpdateTruckOverview();
+            ClearForm();
+        }
+
+        private bool ValidateInput(out int senderPostalCode, out int receiverPostalCode, out Region senderRegion, out Region receiverRegion, out PackageSize packageSize)
+        {
+            senderPostalCode = 0;
+            receiverPostalCode = 0;
+            senderRegion = null;
+            receiverRegion = null;
+            packageSize = PackageSize.Small;
+
+            if (!int.TryParse(SenderPostalCodeTextBox.Text, out senderPostalCode) ||
+                !int.TryParse(ReceiverPostalCodeTextBox.Text, out receiverPostalCode))
+            {
+                MessageBox.Show("Postnummer skal være et tal.", "Ugyldigt input", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            if (SenderRegionComboBox.SelectedItem is not Region sr ||
+                ReceiverRegionComboBox.SelectedItem is not Region rr ||
+                PackageSizeComboBox.SelectedItem is not PackageSize ps)
+            {
+                MessageBox.Show("Vælg region og pakkestørrelse.", "Manglende input", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            senderRegion = sr;
+            receiverRegion = rr;
+            packageSize = ps;
+            return true;
+        }
+
+        private void UpdateTruckOverview()
+        {
+            _truckOverview.Clear();
+
+            foreach (var entry in _regionTruckMap)
+            {
+                _truckOverview.Add($"{entry.Key.Name}: {entry.Value.Packages.Count} pakke(r)");
+            }
+        }
+
+        private void ClearForm()
+        {
+            SenderNameTextBox.Clear();
+            SenderCityTextBox.Clear();
+            SenderPostalCodeTextBox.Clear();
+            SenderRegionComboBox.SelectedIndex = -1;
+            ReceiverNameTextBox.Clear();
+            ReceiverAddressTextBox.Clear();
+            ReceiverCityTextBox.Clear();
+            ReceiverPostalCodeTextBox.Clear();
+            ReceiverRegionComboBox.SelectedIndex = -1;
+            PackageSizeComboBox.SelectedIndex = -1;
         }
     }
 }
