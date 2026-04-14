@@ -7,48 +7,52 @@ namespace TeknologiProject
 {
     public class SortingManager
     {
-        public event Loghandler? OnLog;
-        public event Action<int>? OnQueueChanged;
-        public Queue<Package> PackageQueue = new Queue<Package>();
-        object _lock = new object();
-        public string Name;
-        public bool IsWorking = false;
-        public int ID;
+        public event Loghandler? OnLog; //Event til logning af beskeder
+        public event Action? OnQueueChanged; //Event til opdatering af kø-størrelse, sender den nye størrelse som parameter
+        public Queue<Package> PackageQueue = new Queue<Package>(); //Kø til pakker, som skal sorteres og leveres
+        object _lock = new object(); //Lock objekt til at sikre trådsikker adgang til køen, så flere tråde ikke kan ændre køen samtidigt
+        public string Name; //Navn på sorteringsmanageren, som kan bruges til at identificere ham i logs og UI
+        public bool IsWorking = false; //Indikator for om sorteringsmanageren er i gang med at arbejde
+        public int ID; //Unikt ID for sorteringsmanageren, som kan bruges til at identificere ham i logs og UI
 
         //Metode til sortering af pakker i lastbiler baseret på regioner
         public void Sort(Package package, Dictionary<Region, Truck> regionTruckMap)
         {
-            if (package == null) return;
-            if (package.Receiver == null) return;
+            if (package == null) return; //Tjek om pakken er null, hvis ja returner uden at gøre noget
+            if (package.Receiver == null) return; //Tjek om pakken har en modtager, hvis ikke returner uden at gøre noget
 
-            Region region = package.Receiver.Region;
-            if (regionTruckMap.ContainsKey(region))
+            Region region = package.Receiver.Region; 
+            if (regionTruckMap.ContainsKey(region)) //Tjek om der allerede er en lastbil til den pågældende region i regionTruckMap
             {
-                regionTruckMap[region].Packages.Add(package);
+                regionTruckMap[region].Packages.Add(package); //Hvis ja, tilføj pakken til den eksisterende lastbil for den region
             }
 
         }
+
+        //Tilføjelse af pakker til sorteringskøen
+
         public void AddPackageToQueue(Package package)
         {
-            lock (_lock)
+            lock (_lock) //Sikkerhed for at flere tråde ikke tilføjer pakker til køen samtidigt
             {
                 PackageQueue.Enqueue(package);
             }
-            OnQueueChanged?.Invoke(PackageQueue.Count);
-            OnLog?.Invoke($"Package added to queue. Queue size: {PackageQueue.Count}");
+            OnQueueChanged?.Invoke(); //Opdatering af kø-størrelse til event handlers
+            OnLog?.Invoke($"Package added to queue. Queue size: {PackageQueue.Count}"); //Logning af tilføjelse af pakke til køen
         }
-        public Package TryTakePackageFromQueue()
+
+        public Package TryTakePackageFromQueue() //Forsøg på at tage en pakke fra køen, returnerer null hvis køen er tom
         {
-            lock (_lock)
+            lock (_lock) //Sikre at flere tråde ikke forsøger at tage pakker fra køen samtidigt
             {
-                if (PackageQueue.Count == 0)
+                if (PackageQueue.Count == 0) //Tjek om køen er tom, hvis ja returner null
                 {
                     return null;
                 }
-                Package package = PackageQueue.Dequeue();
-                OnQueueChanged?.Invoke(PackageQueue.Count);
-                OnLog?.Invoke($"Package taken from queue. Queue size: {PackageQueue.Count}");
-                return package;
+                Package package = PackageQueue.Dequeue(); //Tag en pakke fra køen
+                OnQueueChanged?.Invoke(); //Opdatering af kø-størrelse til event handlers
+                OnLog?.Invoke($"Package taken from queue. Queue size: {PackageQueue.Count}"); //Logning af fjernelse af pakke fra køen
+                return package; //Returner den tagne pakke
             }
         }
     }
