@@ -8,12 +8,30 @@
         Background="#F5F7FA" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid Height="70" VerticalAlignment="Top" Background="{StaticResource MintGreenBrush}">
-            <TextBlock Text="📦 Pakkesortering" 
-                       FontSize="28" FontWeight="Bold" Foreground="White" 
-                       VerticalAlignment="Center" Margin="24,0,0,0" />
-            <Button Content="Start" HorizontalAlignment="Left" Margin="998,16,0,0" VerticalAlignment="Top" Height="44" Width="84" Click="StartUI"/>
-            <TextBlock x:Name="PostmanCounter" HorizontalAlignment="Left" Margin="850,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center"><Run Language="da-dk" Text="Postbude"/></TextBlock>
-            <TextBlock x:Name="QueueCounter" HorizontalAlignment="Left" Margin="743,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="da-dk" Text="Queue"/></TextBlock>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="200" />
+				<ColumnDefinition Width="200" />
+				<ColumnDefinition Width="150" />
+
+			</Grid.ColumnDefinitions>
+			<StackPanel Grid.Column="0">
+				<TextBlock Text="📦 Pakkesortering" FontSize="28" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" Margin="24,0,0,0" />
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Grid.Column="1">
+				<TextBlock VerticalAlignment="Center" Margin="0,0,20,0" FontSize="16">Active Postmen: </TextBlock>
+				<TextBlock x:Name="PostmanCounter" HorizontalAlignment="Left" FontSize="16" TextWrapping="Wrap" VerticalAlignment="Center">X / X</TextBlock>
+            </StackPanel>
+
+			<StackPanel Orientation="Horizontal" Grid.Column="2">
+				<TextBlock VerticalAlignment="Center" Margin="0,0,20,0" FontSize="16">Queue: </TextBlock>
+				<TextBlock x:Name="QueueCounter" HorizontalAlignment="Left" TextWrapping="Wrap" FontSize="16" VerticalAlignment="Center">X</TextBlock>
+            </StackPanel>
+
+			<StackPanel Grid.Column="3" VerticalAlignment="Center">
+				<Button Content="Start" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Red" Height="40" Width="100" Click="StartUI"/>
+			</StackPanel>
         </Grid>
 
         <Grid Margin="0,70,0,0">

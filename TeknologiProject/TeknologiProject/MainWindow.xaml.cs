@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading;
 using System.Windows;
 
@@ -12,42 +13,45 @@ namespace TeknologiProject
         private readonly Dictionary<Region, Truck> _regionTruckMap = new Dictionary<Region, Truck>();
         private readonly ObservableCollection<string> _logs = new ObservableCollection<string>();
         private readonly ObservableCollection<string> _truckOverview = new ObservableCollection<string>();
-        private PostalHub postalHub = null!;
-        private const int MaxPostmen = 3;
-        private bool _workersStarted;
+        private PostalHub postalHub;
 
         public MainWindow()
         {
             InitializeComponent();
             InitializeUiData();
 
-            _sortingManager.OnQueueChanged += () => Dispatcher.Invoke(() =>
+
+			postalHub = new PostalHub(_sortingManager, _regionTruckMap);
+
+			_sortingManager.OnLog += message => Dispatcher.Invoke(() => _logs.Insert(0, message));
+			_sortingManager.OnQueueChanged += () => Dispatcher.Invoke(() =>
             {
-                QueueCounter.Text = _sortingManager.PackageQueue.Count.ToString();
-                //if (_sortingManager.PackageQueue.Count != 0 && !_workersStarted)
-                //{
-                //    for (int i = 0; i < MaxPostmen; i++)
-                //    {
-                //        postalHub.SpawnPostman(i + 1);
-                //    }
+                QueueCounter.Text = $"{_sortingManager.PackageQueue.Count.ToString()}";
+			});
 
-                //    _workersStarted = true;
-                //}
-            });
-
-            postalHub.OnActivePostmenChanged += count => Dispatcher.Invoke(() => PostmanCounter.Text = count.ToString());
-
-            postalHub.OnPackageDelivered += package =>
+            postalHub.OnActivePostmenChanged += count =>
             {
                 Dispatcher.Invoke(() =>
                 {
-                    _logs.Insert(0, $"✓ Pakke leveret til {package.Receiver.Region.Name} ({package.Size})");
+                    PostmanCounter.Text = $"{count.ToString()} / {postalHub.MaximumWorkingPostmen}";
+                });
+            };
+
+            postalHub.OnPackageDelivered += (package) =>
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    _logs.Insert(0, $"[Lastbil] Pakke til {package.Receiver.Name} i {package.Receiver.Region.Name} med størrelse ({package.Size}) er afleveret i lastbil");
                     UpdateTruckOverview();
                 });
             };
-            postalHub.OnLog += message => Dispatcher.Invoke(() => _logs.Insert(0, message));
-            _sortingManager.OnLog += message => Dispatcher.Invoke(() => _logs.Insert(0, message));
-
+            postalHub.OnLog += message =>
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    _logs.Insert(0, message);
+                });
+            };
         }
 
         private void InitializeUiData()
@@ -82,36 +86,40 @@ namespace TeknologiProject
             LogListBox.ItemsSource = _logs;
             TruckOverviewListBox.ItemsSource = _truckOverview;
 
-            _sortingManager.OnLog += message => Dispatcher.Invoke(() => _logs.Insert(0, message));
-
             UpdateTruckOverview();
 
-            postalHub = new PostalHub(_sortingManager, _regionTruckMap);
             Thread.Sleep(1000);
         }
 
 
-        private void CreateRandom()
+        private void CreateRandomPackages()
         {
-            for (int i = 0; i < 10; i++)
+            // 20 pakker
+            for (int i = 0; i < 20; i++)
             {
-                var random = new Random();
-                var senderRegion = _regions[random.Next(_regions.Count)];
-                var receiverRegion = _regions[random.Next(_regions.Count)];
-                var packageSize = (PackageSize)random.Next(Enum.GetValues(typeof(PackageSize)).Length);
-                var package = new Package
+                string[] firstnames = new string[]{ "Erik", "Maria", "Lise", "Signe", "Lucas", "Emma", "Ida", "Josefine", "Johannes", "Marc", "Nina", "Lotte", "Mathias", "Christian", "Mathilde", "Anton", "August", "Sofia", "Emma", "Magnus", "Felix", "Olivia", "Clara", "Oscar", "Nora", "Elias", "Freeja", "William"};
+                string[] lastnames = { "Hansen", "Jensen", "Nielsen", "Pedersen", "Andersen", "Christensen", "Larsen", "Rasmussen", "Jørgensen", "Sørensen", "Olsen", "Knudsen", "Thomsen", "Poulsen", "Petersen" };
+                Random random = new Random();
+                string senderFirstname = firstnames[random.Next(0, (firstnames.Length - 1))];
+                string senderLastname = lastnames[random.Next(0, (lastnames.Length - 1))];
+                string receiverFirstname = firstnames[random.Next(0, (firstnames.Length - 1))];
+                string receiverLastname = lastnames[random.Next(0, (lastnames.Length - 1))];
+                Region senderRegion = _regions[random.Next(_regions.Count)];
+                Region receiverRegion = _regions[random.Next(_regions.Count)];
+                PackageSize packageSize = (PackageSize)random.Next(Enum.GetValues(typeof(PackageSize)).Length);
+                Package package = new Package
                 {
                     Sender = new Sender
                     {
-                        Name = $"Sender {i + 1}",
+                        Name = $"{senderFirstname} {senderLastname}",
                         City = $"City {i + 1}",
                         Postalcode = random.Next(1000, 9999),
                         Region = senderRegion
                     },
                     Receiver = new Receiver
                     {
-                        Name = $"Receiver {i + 1}",
-                        Address = $"Address {i + 1}",
+						Name = $"{receiverFirstname} {receiverLastname}",
+						Address = $"Address {i + 1}",
                         City = $"City {i + 1}",
                         Postalcode = random.Next(1000, 9999),
                         Region = receiverRegion
@@ -129,7 +137,7 @@ namespace TeknologiProject
                 return;
 
             // Oprettelse af afsender, modtager og pakke ud fra formularen
-            var package = new Package
+            Package package = new Package
             {
                 Sender = new Sender
                 {
@@ -149,10 +157,11 @@ namespace TeknologiProject
                 Size = packageSize
             };
 
-            _sortingManager.Sort(package, _regionTruckMap);
-            _logs.Insert(0, $"✓ Pakke sorteret til {receiverRegion.Name} ({packageSize})");
+            _sortingManager.AddPackageToQueue(package);
+            _logs.Insert(0, $"[Kø] Ny pakke i køen til {package.Receiver.Name} i {receiverRegion.Name} med størrelsen ({packageSize})");
             UpdateTruckOverview();
             ClearForm();
+
         }
 
         private bool ValidateInput(out int senderPostalCode, out int receiverPostalCode, out Region senderRegion, out Region receiverRegion, out PackageSize packageSize)
@@ -210,19 +219,14 @@ namespace TeknologiProject
 
         private void StartUI(object sender, RoutedEventArgs e)
         {
-            CreateRandom();
+            CreateRandomPackages();
 
-            //if (_workersStarted)
-            //{
-            //    return;
-            //}
-
-            for (int i = 0; i < MaxPostmen; i++)
+            for (int i = 0; i < 6; i++)
             {
                 postalHub.SpawnPostman(i + 1);
             }
 
-            //_workersStarted = true;
+            postalHub.SetShutDown();
         }           
     }
 }

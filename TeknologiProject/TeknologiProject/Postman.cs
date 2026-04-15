@@ -4,6 +4,7 @@ using System.Text;
 
 namespace TeknologiProject
 {
+    // BRUGES IKKE SOM DET ER NU - I stedet er postmændene tråde.
     public class Postman
     {
         public string Name; // Navn på postmanden
